@@ -79,10 +79,9 @@ namespace Game
             combatants.Add(player);
             combatants = ShuffleTheBattlefield(combatants);
             Console.Clear();
-            Console.WriteLine("Battlefiels looks like this..");
+            Console.WriteLine("---- Line-up ----");
             foreach (var com in combatants)
                 Console.WriteLine(com.Name);
-            Console.WriteLine("-----------------------");
         }
 
         public void RemovePlayer(GameEntity player)
