@@ -11,38 +11,61 @@ namespace Game
     {
         static void Main(string[] args)
         {
-            var random = new Random();
             var game = new GameEngine();
-            var human = new Human();
-            var monster = new Monster();
-            int attackerA = 0;
-            int attackerB = 0;
+            var bf = new Battlefield();
+            
 
-            while (attackerA == attackerB)
+
+            
+            bf.AddPlayer(new Human());
+            bf.AddPlayer(new Human());
+            bf.AddPlayer(new Human());
+            bf.AddPlayer(new Human());
+            bf.AddPlayer(new Monster());
+            bf.AddPlayer(new Monster());
+            bf.AddPlayer(new Monster());
+            bf.AddPlayer(new Dragon());
+            bf.AddPlayer(new Human());
+            bf.AddPlayer(new Human());
+            bf.AddPlayer(new Human());
+            bf.AddPlayer(new Human());
+            bf.AddPlayer(new Monster());
+            bf.AddPlayer(new Monster());
+            bf.AddPlayer(new Monster());
+
+            var result = bf.Battle();
+
+            while(result == null)
             {
-                attackerA = random.Next(0, human.Agility);
-                attackerB = random.Next(0, monster.Agility);
+                result = bf.Battle();
+
+                    if(result !=  null)
+                    Console.WriteLine("Winner is " + result);
+                    else
+                    Console.WriteLine();
+                
             }
+            Console.WriteLine("-----------------------");
+            bf.ListAll();
 
-            if(attackerA > attackerB)
-            {
-                Console.WriteLine("Human attacks Monster!");
+            //game.Battle(human, monster);
 
-                var damage = game.Attack(human, monster);
+            //Console.WriteLine(human.Dead);
 
-                Console.WriteLine($"{damage} points of damage, Monster has {monster.Health} health left!");
-            }
+            //var counter = 0;
 
-            if (attackerB > attackerA)
-            {
-                Console.WriteLine("Monster attacks Human!");
+            //while (!dragon.Dead)
+            //{
+            //    if (slime.Dead)
+            //    {
+            //        counter++;
+            //        slime = new Slime();
+            //    }
 
-                var damage = game.Attack(monster, human);
+            //    game.Battle(slime, dragon);
+            //}
 
-                Console.WriteLine($"{damage} points of damage, Human has {human.Health} health left!");
-            }
-
-
+            //Console.WriteLine($"Slime death counter: {counter}");
 
             Console.Read();
         }

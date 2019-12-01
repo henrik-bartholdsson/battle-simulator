@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Game.Entities
 {
-    class Slime : GameEntity
+    public class Slime : GameEntity
     {
         public Slime() : base(50, 20, 5)
         {
