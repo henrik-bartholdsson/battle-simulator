@@ -30,7 +30,7 @@ namespace Game
             Console.WriteLine(" D for dragon");
             Console.WriteLine(" S for slime (5x)");
             Console.WriteLine();
-            Console.WriteLine(" Select creature and +/- to change the amount.");
+            Console.WriteLine(" Select creature and +/- to change the numbers.");
             Console.WriteLine(" Human: 0x - Mobster 0x - Slime 0x - Dragon 0x");
             Console.WriteLine();
             Console.WriteLine();
@@ -46,6 +46,8 @@ namespace Game
             while (!startGame)
             {
                 var key = Console.ReadKey().Key;
+                Console.SetCursorPosition(0, 17);
+                Console.WriteLine("                                                                    ");
                 Console.SetCursorPosition(0, 17);
                 switch (key)
                 {

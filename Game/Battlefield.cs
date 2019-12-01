@@ -12,8 +12,8 @@ namespace Game
         readonly GameEngine gameEngone = new GameEngine();
         List<GameEntity> combatants = new List<GameEntity>();
         readonly Random random = new Random();
-
         string winner;
+        bool ShuffledBattlefield = false;
 
         public Battlefield()
         {
@@ -23,6 +23,12 @@ namespace Game
         {
             int randomIndexOfDefender;
             GameEntity defender;
+
+            if (!ShuffledBattlefield)
+            {
+                combatants = ShuffleTheBattlefield(combatants);
+                ShuffledBattlefield = true;
+            }
 
             if (winner != null)
                 return winner;
@@ -47,7 +53,19 @@ namespace Game
                         if (winner != null)
                             return winner;
                     }
-                    Console.WriteLine($"{attacker.Name} attacks {defender.Name} by {gameEngone.Attack(attacker, defender)} damage");
+                    Console.Write($"{attacker.Name} attacks {defender.Name} by {gameEngone.Attack(attacker, defender)} damage ");
+                    if(defender.Dead)
+                        Console.WriteLine($" and {defender.Name} dies.");
+                    else {
+                        Console.WriteLine();
+                        Console.Write($"Then {defender.Name} counterattack {attacker.Name} by {gameEngone.Attack(defender, attacker)} damage");
+                        if(attacker.Dead)
+                            Console.WriteLine($" and the {attacker.Name} falls down and dies.");
+                        else
+                            Console.WriteLine();
+
+                    }
+                    
                 }
             }
 
@@ -77,11 +95,6 @@ namespace Game
         public void AddPlayer(GameEntity player)
         {
             combatants.Add(player);
-            combatants = ShuffleTheBattlefield(combatants);
-            Console.Clear();
-            Console.WriteLine("---- Line-up ----");
-            foreach (var com in combatants)
-                Console.WriteLine(com.Name);
         }
 
         public void RemovePlayer(GameEntity player)
@@ -100,6 +113,12 @@ namespace Game
                 tempCombatants.Add(combatants.ElementAt(tempIndex));
                 combatants.RemoveAt(tempIndex);
             }
+
+            Console.Clear();
+            Console.WriteLine("---- Line-up ----");
+            foreach (var com in tempCombatants)
+                Console.WriteLine(com.Name);
+            Console.WriteLine("----------------");
             return tempCombatants;
         }
 
