@@ -81,7 +81,7 @@ namespace Game
 
                 }
                 Console.SetCursorPosition(0, 8);
-                Console.WriteLine($" Human: {asdf["human"]}x - Monster {asdf["monster"]}x - Slime {asdf["slime"]}x - Dragon {asdf["dragon"]}x...");
+                Console.WriteLine($" Human: {asdf["human"]}x - Monster {asdf["monster"]}x - Slime {asdf["slime"]}x - Dragon {asdf["dragon"]}x");
 
                 Console.SetCursorPosition(0, 17);
             }
