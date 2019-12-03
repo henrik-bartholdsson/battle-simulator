@@ -9,7 +9,7 @@ namespace Game
 {
     public class Battlefield
     {
-        readonly GameEngine gameEngone = new GameEngine();
+        readonly GameEngine gameEngine = new GameEngine();
         List<GameEntity> combatants = new List<GameEntity>();
         readonly Random random = new Random();
         string winner;
@@ -53,12 +53,12 @@ namespace Game
                         if (winner != null)
                             return winner;
                     }
-                    Console.Write($"{attacker.Name} attacks {defender.Name} by {gameEngone.Attack(attacker, defender)} damage ");
+                    Console.Write($"{attacker.Name} attacks {defender.Name} by {gameEngine.Attack(attacker, defender)} damage ");
                     if(defender.Dead)
                         Console.WriteLine($" and {defender.Name} dies.");
                     else {
                         Console.WriteLine();
-                        Console.Write($"Then {defender.Name} counterattack {attacker.Name} by {gameEngone.Attack(defender, attacker)} damage");
+                        Console.Write($"Then {defender.Name} counterattack {attacker.Name} by {gameEngine.Attack(defender, attacker)} damage");
                         if(attacker.Dead)
                             Console.WriteLine($" and the {attacker.Name} falls down and dies.");
                         else
